@@ -4,17 +4,28 @@ list = ['Clean my room', 'Buy Groceries']
 def printToDo():
     print('To do:')
     print('------')
+    index = 1
     for item in list:
-        print(item)
+        print(str(index) + " | " + item)
+        index+=1
     print('------')
+    print('')
 
 # Option dialog
 def optionDialog():
-    option = input('Add: press 1, Remove: press 2, Exit: 3 : ' )
+    print('Choose an Option:')
+    print(' Add to do | Type "1"')
+    print(' Remove to do | Type "2"')
+    print(' Exit | Type "3"')
+    option = input('Option : ' )
     if option == "1":
         addItem()
+        optionDialog()
+    elif option == "2":
+        removeItem()
+        optionDialog()
     elif option == "3":
-        exit
+        exit()
     else:
         print('Input something else')
         optionDialog()
@@ -30,8 +41,9 @@ def addItem():
 # Removing a to do
 def removeItem():
     removeItem = input('Remove item id... :')
-    list.remove(list[removeItem])
-    print('Removed!')
+    removedItem = list[int(removeItem)-1]
+    list.remove(removedItem)
+    print('Removed "' + removedItem + "'")
     print('')
     printToDo()
 
