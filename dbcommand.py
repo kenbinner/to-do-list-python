@@ -18,10 +18,14 @@ def dropTable():
 
 def otherCommand():
     #otherCommand = """ SET IDENTITY_INSERT TODO_LIST OFF"""
-    otherCommand = """ALTER TABLE TODO_LIST auto_increment = 1;"""
+    #otherCommand = """ALTER TABLE TODO_LIST auto_increment = 1;"""
+    otherCommand = """SELECT * FROM sqlite_sequence;"""
+
+    #curr.execute(otherCommand)
+    #conn.commit()
 
     curr.execute(otherCommand)
-    conn.commit()
+    print(curr.fetchall)
 
 def createIndex():
     createIndexCommand = """ CREATE UNIQUE INDEX indItem
@@ -43,6 +47,16 @@ def removeData(itemId):
     WHERE itemId = '""" + str(itemId) + "';"
 
     curr.execute(removeDataCommand)
+    conn.commit()
+
+    shiftIds = """UPDATE TODO_LIST SET itemId = itemId - 1 WHERE itemId > '""" + str(itemId) + "';"
+
+    curr.execute(shiftIds)
+    conn.commit()
+
+    resetSequence = """delete from sqlite_sequence where name='TODO_LIST';"""
+
+    curr.execute(resetSequence)
     conn.commit()
 
 
@@ -76,7 +90,7 @@ curr = conn.cursor()
 #createIndex()
 #insertData(0, 'Play Games')
 #insertData('Eat cheese')
-#removeData(None)
+#removeData(10)
 #printDataTest()
 #otherCommand()
 
