@@ -5,9 +5,9 @@ import dbcommand
 def printToDo():
     print('To do:')
     print('------')
-    list = dbcommand.printData()
+    list = dbcommand.getData()
     for item in list:
-        print(item[0] + " | " + item[1])
+        print(str(item[0]) + " | " + str(item[1]))
     print('------')
     print('')
 
@@ -33,17 +33,17 @@ def optionDialog():
 # Adding a new to do
 def addItem():
     addItem = input('Add new todo... : ' )
-    list.append(addItem)
+    dbcommand.insertData(addItem)
     print('Added!')
     print('')
     printToDo()
 
 # Removing a to do
 def removeItem():
-    removeItem = input('Remove item id... :')
-    removedItem = list[int(removeItem)-1]
-    list.remove(removedItem)
-    print('Removed "' + removedItem + "'")
+    removeItemId = input('Remove item id... :')
+    removedRow = dbcommand.getDataRow(removeItemId)
+    dbcommand.removeData(removeItemId)
+    print('Removed "' + str(removedRow) + "'")
     print('')
     printToDo()
 

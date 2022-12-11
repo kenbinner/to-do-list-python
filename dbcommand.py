@@ -38,17 +38,24 @@ def insertData(item):
     conn.commit()
     print("The data has been added!")
 
-def removeData(index):
+def removeData(itemId):
     removeDataCommand = """DELETE FROM TODO_LIST 
-    WHERE itemId = '""" + str(index) + "';"
+    WHERE itemId = '""" + str(itemId) + "';"
 
     curr.execute(removeDataCommand)
     conn.commit()
 
 
-def printData():  
+def getData():  
     fetchData = "SELECT * from TODO_LIST"
     
+    curr.execute(fetchData)
+    return curr.fetchall()
+
+def getDataRow(itemId):
+    fetchData = """SELECT * from TODO_LIST
+    WHERE itemId = '""" + str(itemId) + "';"
+
     curr.execute(fetchData)
     return curr.fetchall()
 
