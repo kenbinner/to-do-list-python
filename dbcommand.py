@@ -40,7 +40,6 @@ def insertData(item):
 
     curr.execute(addData)
     conn.commit()
-    print("The data has been added!")
 
 def removeData(itemId):
     removeDataCommand = """DELETE FROM TODO_LIST 
