@@ -1,17 +1,13 @@
 import sqlite3
 import dbcommand
 
-list = ['Clean my room', 'Buy Groceries']
-
 # Print out To-do list for user
 def printToDo():
     print('To do:')
     print('------')
-    index = 1
-    # >> list = dbcommand.printData()
+    list = dbcommand.printData()
     for item in list:
-        print(str(index) + " | " + item)
-        index+=1
+        print(item[0] + " | " + item[1])
     print('------')
     print('')
 
