@@ -43,7 +43,7 @@ def removeItem():
     removeItemId = input('Remove item id... :')
     removedRow = dbcommand.getDataRow(removeItemId)
     dbcommand.removeData(removeItemId)
-    print('Removed "' + str(removedRow) + "'")
+    print('Removed "' + str(removedRow[0][1]) + '"')
     print('')
     printToDo()
 
