@@ -1,9 +1,9 @@
 from tkinter import *
-from tkinter import ttk
+from PIL import Image, ImageTk
 
 window = Tk()
 window.title("To do list")
-window.geometry('400x400')
+window.geometry('300x400')
 #window.configure(background = "white")
 
 lbl_title = Label(master = window, text="To do List", height=5, padx=20)
@@ -11,9 +11,15 @@ lbl_title.grid(row = 0, column=0)
 
 list=("todo1","todo2","todo3")
 listx = 1
+check_image = Image.open("./assets/check.png")
+check_image_resized = check_image.resize((20,20))
+check_icon = ImageTk.PhotoImage(check_image_resized)
 for item in list:
-    lbl_item = Label(master=window, text=item, height=5, padx=20)
+    lbl_item = Label(master=window, text=item, height=5, padx=40)
     lbl_item.grid(row=listx, column=0)
+
+    btn_tick = Button(master=window, image=check_icon)
+    btn_tick.grid(row=listx, column=2)
     listx+=1
 
 btn_add = Button(master=window, text="Add to do", relief=RAISED, borderwidth=1)
