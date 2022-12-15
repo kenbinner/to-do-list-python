@@ -89,7 +89,7 @@ curr = conn.cursor()
 #createIndex()
 #insertData(0, 'Play Games')
 #insertData('Eat cheese')
-#removeData(10)
+#removeData(3)
 #printDataTest()
 #otherCommand()
 

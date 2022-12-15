@@ -2,14 +2,9 @@ import sqlite3
 import dbcommand
 
 # Print out To-do list for user
-def printToDo():
-    print('To do:')
-    print('------')
+def getToDo():
     list = dbcommand.getData()
-    for item in list:
-        print(str(item[0]) + " | " + str(item[1]))
-    print('------')
-    print('')
+    return list
 
 # Option dialog
 def optionDialog():
@@ -31,12 +26,8 @@ def optionDialog():
         optionDialog()
         
 # Adding a new to do
-def addItem():
-    addItem = input('Add new todo... : ' )
+def addItem(addItem):
     dbcommand.insertData(addItem)
-    print('Added!')
-    print('')
-    printToDo()
 
 # Removing a to do
 def removeItem():
@@ -45,11 +36,11 @@ def removeItem():
     dbcommand.removeData(removeItemId)
     print('Removed "' + str(removedRow[0][1]) + '"')
     print('')
-    printToDo()
+    getToDo()
 
 conn = sqlite3.connect("tododatabase.db")
 
 curr = conn.cursor()
 
-printToDo()
-optionDialog()
+#getToDo()
+#optionDialog()
